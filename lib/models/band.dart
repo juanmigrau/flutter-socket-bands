@@ -3,21 +3,14 @@ class Band {
   String name;
   int votes;
 
-  Band({required this.id, required this.name, required this.votes});
+  Band({
+    required this.id,
+    required this.name,
+    required this.votes,
+  });
 
-  factory Band.fromJson(Map<String, dynamic> json) {
-    return Band(
-      id: json['id'],
-      name: json['name'],
-      votes: json['votes'],
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'name': name,
-      'votes': votes,
-    };
-  }
+  factory Band.fromMap(Map<String, dynamic> obj) => Band(
+      id: obj.containsKey('id') ? obj['id'] : 'no-id',
+      name: obj.containsKey('name') ? obj['name'] : 'no-name',
+      votes: obj.containsKey('votes') ? obj['votes'] : 'no-votes');
 }
